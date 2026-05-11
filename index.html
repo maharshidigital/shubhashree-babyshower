@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Ghos Arrival | Baby Shower</title>
+    <meta name="description" content="Celebrate with Shubhashree & Ayan as we welcome our bundle of joy.">
+    <link rel="icon" type="image/jpeg" href="fevicon.jpg">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="The Ghos Arrival | Baby Shower">
+    <meta property="og:description" content="Celebrate with Shubhashree & Ayan as we welcome our bundle of joy.">
+    <meta property="og:image" content="fevicon.jpg">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:title" content="The Ghos Arrival | Baby Shower">
+    <meta property="twitter:description" content="Celebrate with Shubhashree & Ayan as we welcome our bundle of joy.">
+    <meta property="twitter:image" content="fevicon.jpg">
+
+    <!-- Premium Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;500;600&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Tailwind CSS via Play CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Outfit', 'sans-serif'],
+                        serif: ['Cormorant Garamond', 'serif'],
+                    },
+                    colors: {
+                        primary: '#1c1917',
+                        secondary: '#78716c',
+                        accent: '#c2a383',
+                        cream: '#faf9f6',
+                        sand: '#f4f1ea',
+                        pinky: '#f7cac9',
+                        bluey: '#92a8d1',
+                    },
+                    letterSpacing: {
+                        widest: '.25em',
+                        mega: '.4em',
+                    },
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom utilities & Animations */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .glass {
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .letter-reveal span {
+            display: inline-block;
+            transform: translateY(100%);
+            opacity: 0;
+            animation: revealLetters 1.2s cubic-bezier(0.77, 0, 0.175, 1) forwards;
+        }
+
+        @keyframes revealLetters {
+            0% {
+                transform: translateY(100%);
+                opacity: 0;
+            }
+
+            100% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        /* Improved Swaying Balloon Animation */
+        /* Dynamic Floating Balloon Overlay Style */
+        @keyframes floatUpwardAmbient {
+            0% {
+                transform: translateY(110vh) translateX(0) rotate(0deg);
+                opacity: 0;
+            }
+
+            15% {
+                opacity: var(--balloon-op, 0.6);
+            }
+
+            85% {
+                opacity: var(--balloon-op, 0.6);
+            }
+
+            100% {
+                transform: translateY(-25vh) translateX(var(--balloon-sway, 50px)) rotate(var(--balloon-rot, 15deg));
+                opacity: 0;
+            }
+        }
+
+        .ambient-balloon {
+            position: fixed;
+            bottom: -160px;
+            border-radius: 50% 50% 50% 50% / 40% 40% 60% 60%;
+            box-shadow: inset 10px 10px 20px rgba(255, 255, 255, 0.6), inset -5px -5px 20px rgba(0, 0, 0, 0.03), 0 15px 30px rgba(0, 0, 0, 0.05);
+            z-index: 40;
+            /* Absolute top overlay */
+            pointer-events: none;
+            animation: floatUpwardAmbient 20s linear forwards;
+            /* Explicit base duration */
+            backdrop-filter: blur(0.3px);
+        }
+
+        .ambient-balloon::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 1.2px;
+            height: 80px;
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.12), transparent);
+        }
+
+        .ambient-balloon::before {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            width: 12px;
+            height: 8px;
+            background: inherit;
+            transform: translateX(-50%);
+            border-radius: 50% / 100% 100% 0 0;
+            filter: brightness(0.95);
+        }
+
+        .parallax-bg {
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        /* Modern UI Utilities */
+        .text-shadow-premium {
+            text-shadow: 0 2px 15px rgba(0, 0, 0, 0.4);
+        }
+
+        .text-shadow-subtle {
+            text-shadow: 0 1px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Interactive Balloons */
+        .interactive-balloon {
+            cursor: pointer;
+            transition: all 0.3s ease;
+            filter: drop-shadow(0 10px 15px rgba(0, 0, 0, 0.1));
+            position: relative;
+            z-index: 10;
+        }
+
+        .interactive-balloon:hover {
+            transform: translateY(-10px) scale(1.05);
+            filter: drop-shadow(0 20px 25px rgba(0, 0, 0, 0.15));
+        }
+
+        .balloon-shape {
+            width: 180px;
+            height: 220px;
+            border-radius: 50% 50% 50% 50% / 40% 40% 60% 60%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            box-shadow: inset 15px 15px 30px rgba(255, 255, 255, 0.4), inset -15px -15px 30px rgba(0, 0, 0, 0.05);
+        }
+
+        .balloon-shape::before {
+            content: '';
+            position: absolute;
+            bottom: -6px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 24px;
+            height: 12px;
+            border-radius: 50% / 100% 100% 0 0;
+            background: inherit;
+        }
+
+        .balloon-shape::after {
+            content: '';
+            position: absolute;
+            bottom: -110px;
+            left: 50%;
+            width: 2px;
+            height: 100px;
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.2), transparent);
+            transform: translateX(-50%);
+        }
+
+        .float-slow {
+            animation: floatAnim 4s ease-in-out infinite;
+        }
+
+        .float-slower {
+            animation: floatAnim 5s ease-in-out infinite 1s;
+        }
+
+        @keyframes floatAnim {
+
+            0%,
+            100% {
+                transform: translateY(0) rotate(0deg);
+            }
+
+            50% {
+                transform: translateY(-25px) rotate(3deg);
+            }
+        }
+
+        .pop-anim {
+            pointer-events: none;
+            animation: popEffect 0.45s forwards cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+        }
+
+        @keyframes popEffect {
+            0% {
+                transform: scale(1);
+                opacity: 1;
+            }
+
+            35% {
+                transform: scale(1.3);
+                opacity: 1;
+                filter: brightness(1.4) blur(2px);
+            }
+
+            100% {
+                transform: scale(0);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-cream text-primary antialiased overflow-x-hidden font-light">
+    <!-- Ambient Drifting Balloon Layer -->
+    <div id="balloon-garden" class="fixed inset-0 pointer-events-none z-30 overflow-hidden"></div>
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 w-full z-50 transition-all duration-500 px-6 py-8 flex justify-between items-center text-white"
+        id="mainNav">
+        <div class="text-2xl font-serif tracking-wider flex items-center gap-2 italic font-semibold">
+            <i class="fa-solid fa-baby-carriage text-accent text-lg"></i> S & A
+        </div>
+        <a href="#predict"
+            class="hidden md:inline-block uppercase text-xs tracking-widest border-b border-current pb-1 hover:opacity-60 transition-opacity font-medium">Predict
+            Gender</a>
+    </nav>
+
+    <!-- Hero Section -->
+    <section
+        class="relative h-screen w-full flex items-center justify-center overflow-hidden bg-cover bg-center bg-no-repeat"
+        style="background-image: url('https://images.unsplash.com/photo-1555961064-4bc7ec634bbc?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');">
+
+
+        <div class="absolute inset-0 bg-black/40 bg-blend-overlay"></div>
+
+        <div class="relative z-10 text-center px-4">
+            <div class="overflow-hidden mb-2">
+                <p
+                    class="text-white text-xs md:text-sm uppercase tracking-mega letter-reveal flex items-center justify-center gap-3 font-medium text-shadow-subtle">
+                    <span style="animation-delay: 0.1s;"><i class="fa-solid fa-sparkles text-accent text-[10px]"></i>
+                        The Ghos Family Welcomes <i class="fa-solid fa-sparkles text-accent text-[10px]"></i></span>
+                </p>
+            </div>
+
+            <div class="overflow-hidden">
+                <h1
+                    class="text-white font-serif text-6xl md:text-9xl italic font-light mb-6 letter-reveal text-shadow-premium">
+                    <span style="animation-delay: 0.3s;">Our Little One</span>
+                </h1>
+            </div>
+
+            <div class="reveal flex flex-col items-center justify-center mt-12 active">
+                <div class="w-[1px] h-24 bg-white/50 mb-6"></div>
+                <p class="text-white uppercase tracking-widest text-xs font-medium">Discover Our Joy</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Introduction -->
+    <section class="py-24 md:py-36 px-6 bg-cream text-center max-w-4xl mx-auto relative">
+        <i
+            class="fa-solid fa-baby text-accent/10 text-[12rem] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none"></i>
+        <div class="reveal relative z-10">
+            <span class="text-accent text-4xl font-serif italic block mb-8">A New Chapter Begins</span>
+            <h2 class="text-4xl md:text-6xl font-serif leading-[1.1] mb-10 font-normal">
+                Join us in honoring <strong class="font-normal italic text-stone-800">Shubhashree & Ayan</strong> as
+                they embrace their
+                most beautiful roles yet.
+            </h2>
+            <div
+                class="flex items-center justify-center space-x-4 text-sm tracking-widest uppercase text-secondary font-medium">
+                <span>Thursday</span>
+                <span class="w-2 h-2 rounded-full bg-accent"></span>
+                <span>May 21, 2026</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- NEW: Meet the Family Section -->
+    <section class="py-24 bg-sand relative overflow-hidden">
+
+        <div class="container mx-auto px-6 max-w-7xl relative z-10">
+            <div class="text-center mb-20 reveal">
+                <span class="text-xs uppercase tracking-mega text-secondary mb-4 block font-medium">The Inner
+                    Circle</span>
+                <h2 class="text-5xl md:text-6xl font-serif italic font-normal">Family To Be</h2>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Member 1: Mom -->
+                <div class="reveal flex flex-col items-center text-center group">
+                    <div
+                        class="w-52 h-52 rounded-full overflow-hidden border-4 border-white shadow-xl mb-6 group-hover:scale-105 transition-transform duration-700 ease-out relative">
+                        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
+                            alt="Mom to be" class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="font-serif text-2xl italic text-stone-800 font-semibold">Mom to be</h3>
+                    <p class="text-accent font-semibold tracking-wider text-sm uppercase mb-3">Shubhashree</p>
+                    <p class="text-sm text-stone-500 px-4 leading-relaxed font-light">Counting every kick and whisper,
+                        ready to shower endless love.</p>
+                </div>
+
+                <!-- Member 2: Papa -->
+                <div class="reveal flex flex-col items-center text-center group" style="transition-delay: 0.15s;">
+                    <div
+                        class="w-52 h-52 rounded-full overflow-hidden border-4 border-white shadow-xl mb-6 group-hover:scale-105 transition-transform duration-700 ease-out relative">
+                        <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
+                            alt="Papa to be" class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="font-serif text-2xl italic text-stone-800 font-semibold">Papa to be</h3>
+                    <p class="text-accent font-semibold tracking-wider text-sm uppercase mb-3">Ayan</p>
+                    <p class="text-sm text-stone-500 px-4 leading-relaxed font-light">Prepping the lullabies and ready
+                        for late-night protector duty.</p>
+                </div>
+
+                <!-- Member 3: Grandma -->
+                <div class="reveal flex flex-col items-center text-center group" style="transition-delay: 0.3s;">
+                    <div
+                        class="w-52 h-52 rounded-full overflow-hidden border-4 border-white shadow-xl mb-6 group-hover:scale-105 transition-transform duration-700 ease-out relative">
+                        <img src="https://images.unsplash.com/photo-1526080652727-5b77f74eacd2?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
+                            alt="Grandma to be" class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="font-serif text-2xl italic text-stone-800 font-semibold">Grandma to be</h3>
+                    <p class="text-accent font-semibold tracking-wider text-sm uppercase mb-3">The matriarch</p>
+                    <p class="text-sm text-stone-500 px-4 leading-relaxed font-light">Armed with ancient wisdom, warmth,
+                        and ready to spoil rotten!</p>
+                </div>
+
+                <!-- Member 4: Chachu -->
+                <div class="reveal flex flex-col items-center text-center group" style="transition-delay: 0.45s;">
+                    <div
+                        class="w-52 h-52 rounded-full overflow-hidden border-4 border-white shadow-xl mb-6 group-hover:scale-105 transition-transform duration-700 ease-out relative">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
+                            alt="Chachu to be" class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="font-serif text-2xl italic text-stone-800 font-semibold">Chachu to be</h3>
+                    <p class="text-accent font-semibold tracking-wider text-sm uppercase mb-3">Cool Uncle</p>
+                    <p class="text-sm text-stone-500 px-4 leading-relaxed font-light">Official mischief partner and
+                        first gaming coach!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Details & Image Split -->
+    <section class="grid grid-cols-1 lg:grid-cols-2 lg:min-h-screen bg-cream relative overflow-hidden">
+
+
+        <!-- Text Content -->
+        <div class="p-12 md:p-24 flex flex-col justify-center reveal relative z-10">
+            <span
+                class="text-xs uppercase tracking-mega text-secondary mb-8 block flex items-center gap-2 font-semibold"><i
+                    class="fa-solid fa-calendar-day"></i> Event Details</span>
+
+            <div class="mb-16">
+                <h3 class="font-serif text-5xl md:text-6xl mb-6 font-normal italic text-stone-800">Celebration Details
+                </h3>
+                <p class="text-stone-500 font-light text-lg max-w-md">We've designed a peaceful afternoon to create
+                    memories
+                    before our lives beautifully change.</p>
+            </div>
+
+            <div class="space-y-10">
+                <div class="flex gap-6 border-b border-stone-200 pb-10">
+                    <div class="text-3xl text-accent font-serif italic font-semibold">01</div>
+                    <div>
+                        <h4
+                            class="uppercase tracking-widest text-xs font-bold mb-3 flex items-center gap-2 text-stone-800">
+                            <i class="fa-solid fa-map-pin text-[10px]"></i> Venue
+                        </h4>
+                        <p class="text-stone-600 leading-relaxed text-lg">The Orchid Conservatory<br>123 Jubilee Street,
+                            Celebration Square<br>City Heights, FL 32801</p>
+                    </div>
+                </div>
+
+                <div class="flex gap-6 border-b border-stone-200 pb-10">
+                    <div class="text-3xl text-accent font-serif italic font-semibold">02</div>
+                    <div>
+                        <h4
+                            class="uppercase tracking-widest text-xs font-bold mb-3 flex items-center gap-2 text-stone-800">
+                            <i class="fa-regular fa-clock text-[10px]"></i> Timing
+                        </h4>
+                        <p class="text-stone-600 leading-relaxed text-lg">Reception & High Tea<br>Commences at 2:00 PM
+                        </p>
+                    </div>
+                </div>
+
+                <div class="flex gap-6">
+                    <div class="text-3xl text-accent font-serif italic font-semibold">03</div>
+                    <div>
+                        <h4
+                            class="uppercase tracking-widest text-xs font-bold mb-3 flex items-center gap-2 text-stone-800">
+                            <i class="fa-solid fa-shirt text-[10px]"></i> Dress Code
+                        </h4>
+                        <p class="text-stone-600 leading-relaxed text-lg">Wear subtle earthy shades: Soft Sage, Pearl,
+                            Champagne, or Sand.</p>
+                    </div>
+                </div>
+            </div>
+
+            <a href="https://maps.google.com" target="_blank"
+                class="mt-16 inline-flex items-center gap-3 uppercase text-xs tracking-widest hover:text-accent transition-all group w-fit font-bold border-b-2 border-stone-200 pb-2 hover:border-accent text-stone-800">
+                Get Directions <i class="fa-solid fa-arrow-right transition-transform group-hover:translate-x-2"></i>
+            </a>
+        </div>
+
+        <!-- Split Image -->
+        <div class="relative min-h-[300px] lg:min-h-auto bg-cover bg-center"
+            style="background-image: url('details_bg.jpg');">
+        </div>
+    </section>
+
+    <!-- Countdown -->
+    <section class="bg-stone-900 text-cream py-24 relative overflow-hidden">
+        <div class="container mx-auto px-6 text-center reveal relative z-10">
+            <i class="fa-solid fa-hourglass-half text-accent/40 mb-6 text-2xl"></i>
+            <h3 class="font-serif italic text-4xl md:text-5xl font-normal mb-14">Ticking moments until arrival</h3>
+
+            <div class="flex flex-wrap justify-center gap-8 md:gap-20" id="countdown">
+                <div class="flex flex-col">
+                    <span id="days"
+                        class="text-6xl md:text-8xl font-light font-serif tracking-tight text-white">00</span>
+                    <span class="uppercase text-[11px] tracking-widest text-stone-400 mt-3 font-semibold">Days</span>
+                </div>
+                <div class="flex flex-col">
+                    <span id="hours"
+                        class="text-6xl md:text-8xl font-light font-serif tracking-tight text-white">00</span>
+                    <span class="uppercase text-[11px] tracking-widest text-stone-400 mt-3 font-semibold">Hours</span>
+                </div>
+                <div class="flex flex-col">
+                    <span id="minutes"
+                        class="text-6xl md:text-8xl font-light font-serif tracking-tight text-white">00</span>
+                    <span class="uppercase text-[11px] tracking-widest text-stone-400 mt-3 font-semibold">Mins</span>
+                </div>
+                <div class="flex flex-col">
+                    <span id="seconds"
+                        class="text-6xl md:text-8xl font-light font-serif tracking-tight text-accent">00</span>
+                    <span class="uppercase text-[11px] tracking-widest text-stone-400 mt-3 font-semibold">Sec</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery -->
+    <section class="py-24 md:py-32 px-6 max-w-7xl mx-auto bg-cream">
+        <div class="text-center mb-20 reveal">
+            <span class="text-xs uppercase tracking-mega text-secondary mb-4 block font-medium">Captured Joy</span>
+            <h2 class="text-5xl md:text-7xl font-serif italic font-normal">Our Maternity Editorial</h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-10 items-end">
+            <div class="md:col-span-7 relative overflow-hidden group reveal h-[650px] rounded shadow-sm bg-stone-100">
+                <img src="https://images.unsplash.com/photo-1438962136829-452260720431?ixlib=rb-4.0.3&auto=format&fit=crop&w=900&q=80"
+                    class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-1000 ease-in-out group-hover:scale-105"
+                    alt="Moment">
+                <div
+                    class="absolute bottom-8 left-8 text-stone-900 text-base font-serif italic font-semibold opacity-0 group-hover:opacity-100 transition-opacity duration-700 glass px-5 py-2 rounded shadow">
+                    Cherished</div>
+            </div>
+
+            <div class="md:col-span-5 grid gap-8 md:gap-10">
+                <div class="relative overflow-hidden group reveal aspect-[4/5] rounded shadow-sm bg-stone-100">
+                    <img src="https://images.unsplash.com/photo-1741823000538-a5a1071b0f87?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                        class="w-full h-full object-cover transition-transform duration-1000 ease-in-out group-hover:scale-110"
+                        alt="Detail">
+                </div>
+                <div class="relative overflow-hidden group reveal aspect-[3/2] rounded shadow-sm bg-stone-100">
+                    <img src="https://images.unsplash.com/photo-1528218635780-5952720c9729?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                        class="w-full h-full object-cover transition-all duration-1000 ease-in-out group-hover:opacity-90"
+                        alt="Family">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONVERTED: Gender Prediction Whatsapp Section -->
+    <section id="predict" class="py-32 bg-sand relative px-6 text-center overflow-hidden">
+
+        <div class="max-w-4xl mx-auto relative z-10 reveal">
+            <div class="mb-16">
+                <i class="fa-solid fa-wand-magic-sparkles text-accent text-4xl mb-6 block"></i>
+                <h2 class="text-5xl md:text-7xl font-serif italic mb-6 font-normal">He or She?</h2>
+                <p class="text-secondary uppercase tracking-widest text-sm font-bold">Cast Your Prediction on WhatsApp
+                </p>
+            </div>
+
+            <div class="flex flex-col md:flex-row justify-center items-center gap-20 max-w-3xl mx-auto mt-16 mb-12">
+                <!-- Option: Boy Balloon -->
+                <div class="flex flex-col items-center">
+                    <div onclick="popBalloon(this, 'Boy')" class="interactive-balloon float-slow">
+                        <div class="balloon-shape bg-bluey text-white font-serif italic">
+                            <i class="fa-solid fa-child text-4xl mb-3 text-white/90"></i>
+                            <span class="text-2xl font-bold tracking-wider">It's Boy?</span>
+                        </div>
+                    </div>
+                    <p
+                        class="text-bluey font-bold tracking-widest uppercase text-xs mt-32 flex items-center gap-2 animate-pulse">
+                        <i class="fa-solid fa-arrow-pointer text-[10px]"></i> Tap to Blast
+                    </p>
+                </div>
+
+                <!-- Option: Girl Balloon -->
+                <div class="flex flex-col items-center">
+                    <div onclick="popBalloon(this, 'Girl')" class="interactive-balloon float-slower">
+                        <div class="balloon-shape bg-pinky text-white font-serif italic">
+                            <i class="fa-solid fa-child-dress text-4xl mb-3 text-white/90"></i>
+                            <span class="text-2xl font-bold tracking-wider">It's Girl?</span>
+                        </div>
+                    </div>
+                    <p
+                        class="text-pinky font-bold tracking-widest uppercase text-xs mt-32 flex items-center gap-2 animate-pulse">
+                        <i class="fa-solid fa-arrow-pointer text-[10px]"></i> Tap to Blast
+                    </p>
+                </div>
+            </div>
+
+            <p class="mt-16 text-stone-500 text-sm font-serif italic font-medium">*Clicking your guess opens WhatsApp to
+                share excitement
+                with the parents!</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-cream border-t border-stone-200 py-20 text-center relative">
+        <div class="mb-4 flex justify-center gap-5 text-stone-300 text-2xl">
+            <i class="fa-solid fa-baby hover:text-accent transition-colors cursor-pointer"></i>
+            <i class="fa-solid fa-heart text-accent animate-pulse"></i>
+            <i class="fa-solid fa-baby-carriage hover:text-accent transition-colors cursor-pointer"></i>
+        </div>
+        <div class="mb-6 font-serif text-4xl italic font-semibold text-stone-800">Shubhashree & Ayan</div>
+        <div class="text-[11px] uppercase tracking-widest text-stone-500 space-y-2 font-bold">
+            <p>Constructed with endless anticipation</p>
+            <p>&copy; 2026 The Ghos Baby Shower</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Prediction Logic to Open WhatsApp
+        function sendPrediction(gender) {
+            const parentContact = "8460753605"; // OPTIONAL: add phonenumber without + sign here for direct msg e.g. "123456789"
+            const emoji = gender === 'Boy' ? '💙 👶' : '💖 👧';
+            const textMessage = `Hi Shubhashree & Ayan! My prediction for the new addition is: Team ${gender}! ${emoji} Can't wait to celebrate with you both!`;
+            const encoded = encodeURIComponent(textMessage);
+
+            let url = `https://wa.me/${parentContact}?text=${encoded}`;
+
+            // Just open in new tab
+            window.open(url, '_blank');
+        }
+
+        // Interactive Balloon Blast handler
+        function popBalloon(el, gender) {
+            el.classList.add('pop-anim');
+
+            // Launch prediction after pop visual completes
+            setTimeout(() => {
+                sendPrediction(gender);
+
+                // Reset styling after a pause so user can retry if they revisit page
+                setTimeout(() => {
+                    el.classList.remove('pop-anim');
+                }, 1000);
+            }, 400);
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+
+            // Reveal Animations
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.05, rootMargin: "0px 0px -50px 0px" });
+
+            document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+            // Nav Blur & Color Toggle
+            const nav = document.getElementById('mainNav');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    nav.classList.add('glass', 'py-4', 'shadow-md', 'text-primary');
+                    nav.classList.remove('py-8', 'text-white');
+                } else {
+                    nav.classList.remove('glass', 'py-4', 'shadow-md', 'text-primary');
+                    nav.classList.add('py-8', 'text-white');
+                }
+            });
+
+            // Countdown
+            const countDate = new Date('May 21, 2026 14:00:00').getTime();
+            const updateTime = () => {
+                const now = new Date().getTime();
+                const diff = countDate - now;
+
+                if (diff <= 0) {
+                    document.getElementById('countdown').innerHTML = "<p class='font-serif italic text-3xl font-bold'>Welcome Home Baby Ghos!</p>";
+                    return;
+                }
+
+                const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+                const secs = Math.floor((diff % (1000 * 60)) / 1000);
+
+                document.getElementById('days').innerText = days.toString().padStart(2, '0');
+                document.getElementById('hours').innerText = hours.toString().padStart(2, '0');
+                document.getElementById('minutes').innerText = mins.toString().padStart(2, '0');
+                document.getElementById('seconds').innerText = secs.toString().padStart(2, '0');
+            }
+            setInterval(updateTime, 1000);
+            updateTime();
+
+            // STRICT DYNAMIC FLOW: Alternating Pink/Blue & Left/Right
+            const balloonGarden = document.getElementById('balloon-garden');
+            let isPinkTurn = false;
+            let isRightTurn = false;
+
+            function generateSequencedBalloon(initialOffsetSec = 0) {
+                if (!balloonGarden) return;
+
+                const b = document.createElement('div');
+                b.className = 'ambient-balloon';
+
+                // Toggle Color order: Blue -> Pink -> Blue -> Pink
+                isPinkTurn = !isPinkTurn;
+                b.style.background = isPinkTurn ? '#f7cac9' : '#92a8d1';
+
+                // Toggle Side order: Left -> Right
+                isRightTurn = !isRightTurn;
+                const rangePos = isRightTurn ? (55 + Math.random() * 30) : (15 + Math.random() * 30);
+
+                const radiusBase = 50 + Math.random() * 50;
+                const driftDur = 14 + Math.random() * 8;
+
+                b.style.width = `${radiusBase}px`;
+                b.style.height = `${radiusBase * 1.35}px`;
+                b.style.left = `${rangePos}%`;
+
+                // Use provided delay to simulate 'already running' for instant visibility
+                b.style.animation = `floatUpwardAmbient ${driftDur}s linear forwards`;
+                if (initialOffsetSec > 0) {
+                    b.style.animationDelay = `-${initialOffsetSec}s`;
+                }
+
+                b.style.setProperty('--balloon-sway', `${isRightTurn ? -120 : 120}px`);
+                b.style.setProperty('--balloon-rot', `${isRightTurn ? -20 : 20}deg`);
+                b.style.setProperty('--balloon-op', (0.75 + Math.random() * 0.15).toFixed(2));
+
+                balloonGarden.appendChild(b);
+
+                // Garbage collection (accounting for shortened runtime if offset)
+                const timeToRun = Math.max(0, (driftDur - initialOffsetSec) * 1000);
+                setTimeout(() => {
+                    if (b.parentNode === balloonGarden) b.remove();
+                }, timeToRun + 1000);
+            }
+
+            // PRE-LOAD SYSTEM: Instantly populate screen upon page visit
+            generateSequencedBalloon(10); // Mid-way up screen
+            generateSequencedBalloon(6);  // Lower mid screen
+            generateSequencedBalloon(2);  // Just lifting off screen
+
+            // Standard ongoing interval for continuous launch
+            setInterval(() => generateSequencedBalloon(0), 1000);
+        });
+    </script>
+</body>
+
+</html>
